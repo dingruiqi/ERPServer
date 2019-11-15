@@ -19,7 +19,7 @@ namespace ERPServer.DataAccess
                //.SetBasePath(Directory.GetCurrentDirectory())
                .AddJsonFile("appsettings.json")
                .Build();
-            var connectionString = configuration.GetConnectionString("BloggingDatabase").Replace("|DataDirectory|",
+            var connectionString = configuration.GetConnectionString("PrivilegeDatabase").Replace("|DataDirectory|",
             System.IO.Directory.GetCurrentDirectory() + "\\app_data\\database\\");
             optionsBuilder.UseSqlServer(connectionString);
         }
