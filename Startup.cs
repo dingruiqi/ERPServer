@@ -26,8 +26,8 @@ namespace ERPServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-        //     services.AddDbContext<PrivilegeManagementContext>(options =>
-        // options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
+            //     services.AddDbContext<PrivilegeManagementContext>(options =>
+            // options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

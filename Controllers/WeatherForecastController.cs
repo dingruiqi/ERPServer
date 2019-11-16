@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace ERPServer.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -26,11 +26,12 @@ namespace ERPServer.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            using(DataAccess.PrivilegeManagementContext context = new DataAccess.PrivilegeManagementContext())
-            {
-                context.Database.EnsureCreated();
-                var temp = context.Users.ToList();
-            }
+            // using(DataAccess.PrivilegeManagementContext context = new DataAccess.PrivilegeManagementContext())
+            // {
+            //     //context.Database.EnsureCreated();
+            //     var temp = context.Users.ToList();
+            // }
+            this._logger.LogDebug("abc");
 
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
