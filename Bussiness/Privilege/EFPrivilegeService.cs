@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ERPServer.DataAccess;
 using ERPServer.Models.PrivilegeManagement;
+using Microsoft.EntityFrameworkCore;
 
 namespace ERPServer.Bussiness.Privilege
 {
@@ -23,6 +24,7 @@ namespace ERPServer.Bussiness.Privilege
         public List<User> GetUsers()
         {
             //throw new System.NotImplementedException();
+            this._context.Users.Include(user=>user.OperationLog)
             return this._context.Users.ToList();
         }
     }
