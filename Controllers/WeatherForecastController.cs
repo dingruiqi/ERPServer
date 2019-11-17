@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -26,13 +25,6 @@ namespace ERPServer.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            // using(DataAccess.PrivilegeManagementContext context = new DataAccess.PrivilegeManagementContext())
-            // {
-            //     //context.Database.EnsureCreated();
-            //     var temp = context.Users.ToList();
-            // }
-            this._logger.LogDebug("abc");
-
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

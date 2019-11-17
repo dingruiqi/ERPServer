@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using ERPServer.Bussiness.Privilege;
+using ERPServer.Models.PrivilegeManagement;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ERPServer.Controllers
@@ -6,8 +9,17 @@ namespace ERPServer.Controllers
     [Route("api/[controller]")]
     public class PrivilegeManagementController : ControllerBase
     {
-        public PrivilegeManagementController()
+        private readonly IPrivilege _privilegeService;
+        public PrivilegeManagementController(IPrivilege iPrivilege)
         {
+            _privilegeService = iPrivilege;
+        }
+
+        [HttpGet]
+        public IEnumerable<User> GetUsers()
+        {
+            //var temp = this._privilegeService.GetUsers();
+            return this._privilegeService.GetUsers();
         }
     }
 }
