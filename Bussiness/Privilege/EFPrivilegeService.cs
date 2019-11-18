@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ERPServer.Bussiness.Privilege
 {
-    public class EFPrivilegeService : IPrivilege
+    public class EFPrivilegeService : IPrivilegeService
     {
         private readonly PrivilegeManagementContext _context;
 
@@ -24,7 +24,7 @@ namespace ERPServer.Bussiness.Privilege
         public List<User> GetUsers()
         {
             //throw new System.NotImplementedException();
-            this._context.Users.Include(user=>user.OperationLog)
+            //this._context.Users.Include(user=>user.OperationLog)
             return this._context.Users.ToList();
         }
     }

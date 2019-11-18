@@ -34,7 +34,7 @@ namespace ERPServer
         options.UseSqlServer(Configuration.GetConnectionString("PrivilegeDatabase").Replace("|DataDirectory|",
             System.IO.Directory.GetCurrentDirectory() + "\\app_data\\database\\")));
 
-            services.AddTransient<IPrivilege, EFPrivilegeService>();
+            services.AddTransient<IPrivilegeService, EFPrivilegeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

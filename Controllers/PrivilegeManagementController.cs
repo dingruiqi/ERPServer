@@ -9,8 +9,8 @@ namespace ERPServer.Controllers
     [Route("api/[controller]")]
     public class PrivilegeManagementController : ControllerBase
     {
-        private readonly IPrivilege _privilegeService;
-        public PrivilegeManagementController(IPrivilege iPrivilege)
+        private readonly IPrivilegeService _privilegeService;
+        public PrivilegeManagementController(IPrivilegeService iPrivilege)
         {
             _privilegeService = iPrivilege;
         }

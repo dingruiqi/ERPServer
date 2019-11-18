@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ERPServer.Models.PrivilegeManagement;
 
 namespace ERPServer.Bussiness.Privilege
 {
-    public interface IPrivilege
+    public interface IPrivilegeService
     {
         List<User> GetUsers();
 
