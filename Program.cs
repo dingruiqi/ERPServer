@@ -13,7 +13,10 @@ namespace ERPServer
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args)
+            .Build()
+            .MigrateDatabase()//初始化数据库
+            .Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

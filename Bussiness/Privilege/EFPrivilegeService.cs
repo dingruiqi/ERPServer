@@ -16,16 +16,21 @@ namespace ERPServer.Bussiness.Privilege
             this._context = context;
         }
 
-        public User GetUser(int userID)
+        public User GetUser(ulong userID)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
+            return this._context.Users
+            .AsNoTracking()
+            .SingleOrDefault(t => t.UserID == userID);
         }
 
         public List<User> GetUsers()
         {
             //throw new System.NotImplementedException();
             //this._context.Users.Include(user=>user.OperationLog)
-            return this._context.Users.ToList();
+            return this._context.Users
+            .AsNoTracking()
+            .ToList();
         }
     }
 }

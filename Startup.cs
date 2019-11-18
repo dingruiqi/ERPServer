@@ -38,7 +38,7 @@ namespace ERPServer
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PrivilegeManagementContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env/*, PrivilegeManagementContext context*/)
         {
             if (env.IsDevelopment())
             {
@@ -61,7 +61,9 @@ namespace ERPServer
             //     var context = serviceScope.ServiceProvider.GetRequiredService<PrivilegeManagementContext>();
             //     context.Database.Migrate();
             // }
-            context.Database.Migrate();
+            //采用注入方式，更简单方便
+            //context.Database.EnsureCreated();
+            //现在有了更厉害的，在program中
         }
     }
 }
