@@ -8,5 +8,7 @@ namespace ERPServer.Bussiness.Privilege
         List<User> GetUsers();
 
         User GetUser(ulong userID);
+
+        int AddUser(User user);
     }
 }

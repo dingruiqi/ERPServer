@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ERPServer.DataAccess;
@@ -14,6 +15,42 @@ namespace ERPServer.Bussiness.Privilege
         {
             //注入
             this._context = context;
+        }
+
+        public int AddUser(User user)
+        {
+            //throw new System.NotImplementedException();
+            this._context.Users.Add(user);
+
+            try
+            {
+                this._context.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (UserExists(user.UserID))
+                {
+                    return -1;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+            return 0;
+        }
+
+        private bool UserExists(ulong userID)
+        {
+            //throw new NotImplementedException();
+            var tmp = this.GetUser(userID);
+            return tmp != null;
         }
 
         public User GetUser(ulong userID)
