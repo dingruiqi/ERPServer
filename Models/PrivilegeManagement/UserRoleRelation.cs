@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ERPServer.Models.PrivilegeManagement
 {
@@ -7,12 +8,13 @@ namespace ERPServer.Models.PrivilegeManagement
     {
         //pkid
         [Key]
-        public ulong RelationID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long RelationID { get; set; }
 
-        public ulong UserID { get; set; }
+        public long UserID { get; set; }
         public User User { get; set; }
 
-        public ulong RoleID { get; set; }
+        public long RoleID { get; set; }
         public Role Role { get; set; }
     }
 }

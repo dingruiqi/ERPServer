@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERPServer.Migrations
 {
     [DbContext(typeof(PrivilegeManagementContext))]
-    [Migration("20191118061545_AddPrivilegeUser")]
-    partial class AddPrivilegeUser
+    [Migration("20191120083633_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,10 @@ namespace ERPServer.Migrations
 
             modelBuilder.Entity("ERPServer.Models.PrivilegeManagement.Department", b =>
                 {
-                    b.Property<decimal>("DepartmentID")
+                    b.Property<long>("DepartmentID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(20,0)");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -39,11 +40,11 @@ namespace ERPServer.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal>("ParentDepartmentID")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<long>("ParentDepartmentID")
+                        .HasColumnType("bigint");
 
-                    b.Property<decimal>("UserID")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<long>("UserID")
+                        .HasColumnType("bigint");
 
                     b.HasKey("DepartmentID");
 
@@ -55,9 +56,10 @@ namespace ERPServer.Migrations
 
             modelBuilder.Entity("ERPServer.Models.PrivilegeManagement.OperationLog", b =>
                 {
-                    b.Property<decimal>("LogID")
+                    b.Property<long>("LogID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(20,0)");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -67,8 +69,8 @@ namespace ERPServer.Migrations
                     b.Property<int>("OperationType")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("UserID")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<long>("UserID")
+                        .HasColumnType("bigint");
 
                     b.HasKey("LogID");
 
@@ -79,9 +81,10 @@ namespace ERPServer.Migrations
 
             modelBuilder.Entity("ERPServer.Models.PrivilegeManagement.Right", b =>
                 {
-                    b.Property<decimal>("RightID")
+                    b.Property<long>("RightID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(20,0)");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -90,8 +93,8 @@ namespace ERPServer.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal>("ParentRightID")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<long>("ParentRightID")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("RightName")
                         .IsRequired()
@@ -105,9 +108,10 @@ namespace ERPServer.Migrations
 
             modelBuilder.Entity("ERPServer.Models.PrivilegeManagement.Role", b =>
                 {
-                    b.Property<decimal>("RoleID")
+                    b.Property<long>("RoleID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(20,0)");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -116,8 +120,8 @@ namespace ERPServer.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal>("ParentRoleID")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<long>("ParentRoleID")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("RoleName")
                         .IsRequired()
@@ -131,15 +135,16 @@ namespace ERPServer.Migrations
 
             modelBuilder.Entity("ERPServer.Models.PrivilegeManagement.RoleRightRelation", b =>
                 {
-                    b.Property<decimal>("RelationID")
+                    b.Property<long>("RelationID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(20,0)");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("RightID")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<long>("RightID")
+                        .HasColumnType("bigint");
 
-                    b.Property<decimal>("RoleID")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<long>("RoleID")
+                        .HasColumnType("bigint");
 
                     b.HasKey("RelationID");
 
@@ -152,9 +157,10 @@ namespace ERPServer.Migrations
 
             modelBuilder.Entity("ERPServer.Models.PrivilegeManagement.User", b =>
                 {
-                    b.Property<decimal>("UserID")
+                    b.Property<long>("UserID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(20,0)");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -169,8 +175,8 @@ namespace ERPServer.Migrations
                     b.Property<DateTime>("LastLoginTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("LoginCount")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<long>("LoginCount")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("LoginName")
                         .IsRequired()
@@ -198,30 +204,31 @@ namespace ERPServer.Migrations
                     b.HasData(
                         new
                         {
-                            UserID = 1m,
-                            CreateTime = new DateTime(2019, 11, 18, 14, 15, 44, 967, DateTimeKind.Local).AddTicks(8513),
-                            CurrentLoginTime = new DateTime(2019, 11, 18, 14, 15, 44, 968, DateTimeKind.Local).AddTicks(4999),
+                            UserID = 1L,
+                            CreateTime = new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(647),
+                            CurrentLoginTime = new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(1106),
                             Email = "",
-                            LastLoginTime = new DateTime(2019, 11, 18, 14, 15, 44, 968, DateTimeKind.Local).AddTicks(4714),
-                            LoginCount = 0m,
+                            LastLoginTime = new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(897),
+                            LoginCount = 0L,
                             LoginName = "SuperAdmin",
                             MobileNum = "13584584928",
-                            Password = "202CB962AC59075B964B07152D234B70",
+                            Password = "E10ADC3949BA59ABBE56E057F20F883E",
                             UserName = "丁瑞琦"
                         });
                 });
 
             modelBuilder.Entity("ERPServer.Models.PrivilegeManagement.UserRoleRelation", b =>
                 {
-                    b.Property<decimal>("RelationID")
+                    b.Property<long>("RelationID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(20,0)");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("RoleID")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<long>("RoleID")
+                        .HasColumnType("bigint");
 
-                    b.Property<decimal>("UserID")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<long>("UserID")
+                        .HasColumnType("bigint");
 
                     b.HasKey("RelationID");
 

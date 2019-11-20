@@ -46,14 +46,14 @@ namespace ERPServer.Bussiness.Privilege
             return 0;
         }
 
-        private bool UserExists(ulong userID)
+        private bool UserExists(long userID)
         {
             //throw new NotImplementedException();
             var tmp = this.GetUser(userID);
             return tmp != null;
         }
 
-        public User GetUser(ulong userID)
+        public User GetUser(long userID)
         {
             //throw new System.NotImplementedException();
             return this._context.Users

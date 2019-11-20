@@ -45,7 +45,7 @@ namespace ERPServer.Controllers
 
         [HttpGet]
         [Route("user/{userID}")]
-        public Result GetUser(ulong userID)
+        public Result GetUser(long userID)
         {
             Result res = new Result();
             try

@@ -7,7 +7,7 @@ namespace ERPServer.Bussiness.Privilege
     {
         List<User> GetUsers();
 
-        User GetUser(ulong userID);
+        User GetUser(long userID);
 
         int AddUser(User user);
     }

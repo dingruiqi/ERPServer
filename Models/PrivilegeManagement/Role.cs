@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ERPServer.Models.PrivilegeManagement
 {
@@ -8,9 +9,10 @@ namespace ERPServer.Models.PrivilegeManagement
     public class Role
     {
         [Key]
-        public ulong RoleID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long RoleID { get; set; }
 
-        public ulong ParentRoleID { get; set; }
+        public long ParentRoleID { get; set; }
 
         [Required, MaxLength(64)]
         public string RoleName { get; set; }

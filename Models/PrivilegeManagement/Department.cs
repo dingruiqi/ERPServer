@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ERPServer.Models.PrivilegeManagement
 {
@@ -7,11 +8,12 @@ namespace ERPServer.Models.PrivilegeManagement
     {
         //部门ID
         [Key]
-        public ulong DepartmentID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long DepartmentID { get; set; }
         [MaxLength(64), Required]
         public string DepartmentName { get; set; }
 
-        public ulong ParentDepartmentID { get; set; }
+        public long ParentDepartmentID { get; set; }
 
         [Required]
         public DateTime CreateTime { get; set; }
@@ -20,7 +22,7 @@ namespace ERPServer.Models.PrivilegeManagement
 
 
         //外键
-        public ulong UserID { get; set; }
+        public long UserID { get; set; }
 
         public User User { get; set; }
     }

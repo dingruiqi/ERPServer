@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ERPServer.Models.PrivilegeManagement
 {
@@ -9,7 +10,8 @@ namespace ERPServer.Models.PrivilegeManagement
     {
         //用户编号
         [Key, Required]
-        public ulong UserID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long UserID { get; set; }
         //登录名字
         [MaxLength(64), Required]
         public string LoginName { get; set; }
@@ -30,7 +32,7 @@ namespace ERPServer.Models.PrivilegeManagement
         public DateTime CurrentLoginTime { get; set; }
         //登录次数
         [Required]
-        public ulong LoginCount { get; set; }
+        public long LoginCount { get; set; }
 
         public Department Department { get; set; }
         public List<UserRoleRelation> UserRoleRelation { get; set; }

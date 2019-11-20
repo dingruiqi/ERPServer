@@ -11,8 +11,9 @@ namespace ERPServer.Migrations
                 name: "Right",
                 columns: table => new
                 {
-                    RightID = table.Column<decimal>(nullable: false),
-                    ParentRightID = table.Column<decimal>(nullable: false),
+                    RightID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ParentRightID = table.Column<long>(nullable: false),
                     RightName = table.Column<string>(maxLength: 64, nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(maxLength: 200, nullable: true)
@@ -26,8 +27,9 @@ namespace ERPServer.Migrations
                 name: "Role",
                 columns: table => new
                 {
-                    RoleID = table.Column<decimal>(nullable: false),
-                    ParentRoleID = table.Column<decimal>(nullable: false),
+                    RoleID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ParentRoleID = table.Column<long>(nullable: false),
                     RoleName = table.Column<string>(maxLength: 64, nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(maxLength: 200, nullable: true)
@@ -41,7 +43,8 @@ namespace ERPServer.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserID = table.Column<decimal>(nullable: false),
+                    UserID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     LoginName = table.Column<string>(maxLength: 64, nullable: false),
                     Password = table.Column<string>(maxLength: 64, nullable: false),
                     UserName = table.Column<string>(maxLength: 64, nullable: false),
@@ -50,7 +53,7 @@ namespace ERPServer.Migrations
                     CreateTime = table.Column<DateTime>(nullable: false),
                     LastLoginTime = table.Column<DateTime>(nullable: false),
                     CurrentLoginTime = table.Column<DateTime>(nullable: false),
-                    LoginCount = table.Column<decimal>(nullable: false)
+                    LoginCount = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,9 +64,10 @@ namespace ERPServer.Migrations
                 name: "RoleRightRelation",
                 columns: table => new
                 {
-                    RelationID = table.Column<decimal>(nullable: false),
-                    RoleID = table.Column<decimal>(nullable: false),
-                    RightID = table.Column<decimal>(nullable: false)
+                    RelationID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleID = table.Column<long>(nullable: false),
+                    RightID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,12 +90,13 @@ namespace ERPServer.Migrations
                 name: "Department",
                 columns: table => new
                 {
-                    DepartmentID = table.Column<decimal>(nullable: false),
+                    DepartmentID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     DepartmentName = table.Column<string>(maxLength: 64, nullable: false),
-                    ParentDepartmentID = table.Column<decimal>(nullable: false),
+                    ParentDepartmentID = table.Column<long>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(maxLength: 200, nullable: true),
-                    UserID = table.Column<decimal>(nullable: false)
+                    UserID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -108,10 +113,11 @@ namespace ERPServer.Migrations
                 name: "OperationLog",
                 columns: table => new
                 {
-                    LogID = table.Column<decimal>(nullable: false),
+                    LogID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     OperationType = table.Column<int>(nullable: false),
                     Content = table.Column<string>(maxLength: 250, nullable: false),
-                    UserID = table.Column<decimal>(nullable: false)
+                    UserID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -128,9 +134,10 @@ namespace ERPServer.Migrations
                 name: "UserRoleRelation",
                 columns: table => new
                 {
-                    RelationID = table.Column<decimal>(nullable: false),
-                    UserID = table.Column<decimal>(nullable: false),
-                    RoleID = table.Column<decimal>(nullable: false)
+                    RelationID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<long>(nullable: false),
+                    RoleID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -148,6 +155,11 @@ namespace ERPServer.Migrations
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserID", "CreateTime", "CurrentLoginTime", "Email", "LastLoginTime", "LoginCount", "LoginName", "MobileNum", "Password", "UserName" },
+                values: new object[] { 1L, new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(647), new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(1106), "", new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(897), 0L, "SuperAdmin", "13584584928", "E10ADC3949BA59ABBE56E057F20F883E", "丁瑞琦" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Department_UserID",
