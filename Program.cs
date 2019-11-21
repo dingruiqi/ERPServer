@@ -14,7 +14,7 @@ namespace ERPServer
     {
         public static void Main(string[] args)
         {
-            var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            var logger = NLog.Web.NLogBuilder.ConfigureNLog("NLog.config").GetCurrentClassLogger();
 
             try
             {
@@ -48,11 +48,12 @@ namespace ERPServer
                 {
                     webBuilder.UseStartup<Startup>();
                 })
-                .ConfigureLogging(logging =>
-                {
-                    logging.ClearProviders();
-                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
-                })
+                // .ConfigureLogging(logging =>//如果注释掉，则只使用nlog，不再显示系统终端的日志内容
+                // {
+                //     logging.ClearProviders();
+                //     logging.AddConsole();
+                //     //logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);//采用appsettings.json配置
+                // })
                 .UseNLog();  // NLog: Setup NLog for Dependency injection;
     }
 }
