@@ -52,7 +52,7 @@ namespace ERPServer
                 {
                     logging.ClearProviders();
                     logging.AddConsole();//如果注释掉，则只显示nlog日志；否则，nlog的最小日志等级将被appsettings.json配置所覆盖。正式发布时，注释掉，只需要nlog
-                    //logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);//采用appsettings.json配置
+                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);//注释掉，则采用appsettings.json配置
                 })
                 .UseNLog();  // NLog: Setup NLog for Dependency injection;
     }
