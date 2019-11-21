@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using ERPServer.Bussiness.Privilege;
-using ERPServer.Models;
+using ERPServer.DTO;
 using ERPServer.Models.PrivilegeManagement;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

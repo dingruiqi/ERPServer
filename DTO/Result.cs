@@ -2,7 +2,7 @@
 
 using Newtonsoft.Json;
 
-namespace ERPServer.Models
+namespace ERPServer.DTO
 {
     public class Result
     {
