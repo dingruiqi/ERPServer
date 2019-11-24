@@ -23,6 +23,15 @@ namespace ERPServer.Controllers
         }
 
         [HttpGet]
+        [Route("auth")]
+        public Result Authenticate([FromBody]string userName, [FromBody]string password)
+        {
+            Result res = new Result();
+
+            return res;
+        }
+
+        [HttpGet]
         [Route("user")]
         public Result GetUsers()
         {
