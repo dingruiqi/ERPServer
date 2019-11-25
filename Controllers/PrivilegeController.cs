@@ -24,9 +24,39 @@ namespace ERPServer.Controllers
 
         [HttpGet]
         [Route("auth")]
-        public Result Authenticate([FromBody]string userName, [FromBody]string password)
+        public Result Authenticate([FromBody]AuthenticationInfo authInfo)
         {
             Result res = new Result();
+
+            try
+            {
+                if (authInfo.UserName == null || authInfo.Password == null)
+                {
+                    res.State = -1;
+                    res.Message = "验证信息不合法";
+                }
+                else
+                {
+                    var user = this._privilegeService.GetUsers().Find(user => user.LoginName == authInfo.UserName && user.Password == authInfo.Password);
+                    if (user == null)
+                    {
+                        res.State = 1;
+                        res.Message = "当前用户不合法";
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("验证用户失败：{0}", e.Message);
+
+                res.Data = e;
+                res.State = -2;
+                //throw;
+            }
 
             return res;
         }

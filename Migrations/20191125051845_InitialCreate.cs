@@ -159,7 +159,7 @@ namespace ERPServer.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserID", "CreateTime", "CurrentLoginTime", "Email", "LastLoginTime", "LoginCount", "LoginName", "MobileNum", "Password", "UserName" },
-                values: new object[] { 1L, new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(647), new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(1106), "", new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(897), 0L, "SuperAdmin", "13584584928", "E10ADC3949BA59ABBE56E057F20F883E", "丁瑞琦" });
+                values: new object[] { 1L, new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(5683), new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(6128), "", new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(5926), 0L, "SuperAdmin", "", "E10ADC3949BA59ABBE56E057F20F883E", "超级管理员" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Department_UserID",

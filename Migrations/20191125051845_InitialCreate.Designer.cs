@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERPServer.Migrations
 {
     [DbContext(typeof(PrivilegeManagementContext))]
-    [Migration("20191120083633_InitialCreate")]
+    [Migration("20191125051845_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -205,15 +205,15 @@ namespace ERPServer.Migrations
                         new
                         {
                             UserID = 1L,
-                            CreateTime = new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(647),
-                            CurrentLoginTime = new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(1106),
+                            CreateTime = new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(5683),
+                            CurrentLoginTime = new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(6128),
                             Email = "",
-                            LastLoginTime = new DateTime(2019, 11, 20, 16, 36, 33, 240, DateTimeKind.Local).AddTicks(897),
+                            LastLoginTime = new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(5926),
                             LoginCount = 0L,
                             LoginName = "SuperAdmin",
-                            MobileNum = "13584584928",
+                            MobileNum = "",
                             Password = "E10ADC3949BA59ABBE56E057F20F883E",
-                            UserName = "丁瑞琦"
+                            UserName = "超级管理员"
                         });
                 });
 

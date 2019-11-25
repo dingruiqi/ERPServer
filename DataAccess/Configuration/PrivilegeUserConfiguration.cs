@@ -4,7 +4,7 @@ using System.Text;
 using ERPServer.Models.PrivilegeManagement;
 using Microsoft.EntityFrameworkCore;
 
-namespace ERPServer
+namespace ERPServer.DataAccess.Configuration
 {
     public class PrivilegeUserConfiguration : IEntityTypeConfiguration<User>
     {
@@ -30,8 +30,8 @@ namespace ERPServer
                 UserID = 1,
                 LoginName = "SuperAdmin",
                 Password = "123456",
-                UserName = "丁瑞琦",
-                MobileNum = "13584584928",
+                UserName = "超级管理员",
+                MobileNum = "",
                 Email = "",
                 CreateTime = DateTime.Now,
                 LastLoginTime = DateTime.Now,

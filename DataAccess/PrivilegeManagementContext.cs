@@ -1,4 +1,5 @@
 using System;
+using ERPServer.DataAccess.Configuration;
 using ERPServer.Models.PrivilegeManagement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -44,6 +45,7 @@ namespace ERPServer.DataAccess
             // });
             //通过分散，避免在OnModelCreating写入过多的代码
             modelBuilder.ApplyConfiguration(new PrivilegeUserConfiguration());
+            //modelBuilder.ApplyConfiguration(new PrivilegeDepartmentConfiguration());
         }
     }
 }

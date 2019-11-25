@@ -31,8 +31,8 @@ namespace ERPServer
             services.AddControllers();
 
             services.AddDbContext<PrivilegeManagementContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("PrivilegeDatabase").Replace("|DataDirectory|",
-            System.IO.Directory.GetCurrentDirectory() + "\\app_data\\database\\")));
+            options.UseSqlServer(Configuration.GetConnectionString(MigrationManager.CONNECTION_NAME).Replace("|DataDirectory|",
+            System.IO.Directory.GetCurrentDirectory() + MigrationManager.DATABASE_PATH)));
 
             services.AddTransient<IPrivilegeService, EFPrivilegeService>();
         }

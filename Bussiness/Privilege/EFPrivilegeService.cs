@@ -57,6 +57,11 @@ namespace ERPServer.Bussiness.Privilege
         {
             //throw new System.NotImplementedException();
             return this._context.Users
+            .Include(user => user.Department)
+            .Include(user => user.UserRoleRelation)
+                .ThenInclude(userRoleRelation => userRoleRelation.Role)
+                .ThenInclude(role => role.RoleRightRelation)
+                .ThenInclude(roleRightRelation => roleRightRelation.Right)
             .AsNoTracking()
             .SingleOrDefault(t => t.UserID == userID);
         }
