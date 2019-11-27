@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using ERPServer.Bussiness.Privilege;
 using ERPServer.DataAccess;
+using ERPServer.DTO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +37,8 @@ namespace ERPServer
             System.IO.Directory.GetCurrentDirectory() + MigrationManager.DATABASE_PATH)));
 
             services.AddTransient<IPrivilegeService, EFPrivilegeService>();
+
+            services.AddAutoMapper(typeof(PrivilegeAutoMapperProfileConfiguration));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using ERPServer.Bussiness.Privilege;
 using ERPServer.DTO;
+using ERPServer.DTO.PrivilegeManagement;
 using ERPServer.Models.PrivilegeManagement;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -16,13 +20,19 @@ namespace ERPServer.Controllers
 
         private readonly ILogger<PrivilegeController> _logger;
 
-        public PrivilegeController(IPrivilegeService iPrivilege, ILogger<PrivilegeController> logger)
+        private readonly IMapper _mapper;
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public PrivilegeController(IPrivilegeService iPrivilege, ILogger<PrivilegeController> logger, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _privilegeService = iPrivilege;
             _logger = logger;
+            _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("auth")]
         public Result Authenticate([FromBody]AuthenticationInfo authInfo)
         {
@@ -32,20 +42,24 @@ namespace ERPServer.Controllers
             {
                 if (authInfo.UserName == null || authInfo.Password == null)
                 {
-                    res.State = -1;
+                    res.State = 1;
                     res.Message = "验证信息不合法";
                 }
                 else
                 {
-                    var user = this._privilegeService.GetUsers().Find(user => user.LoginName == authInfo.UserName && user.Password == authInfo.Password);
+                    var user = this._privilegeService.GetUsers()
+                    .Find(user => user.LoginName == authInfo.UserName
+                    && user.Password.ToUpper() == authInfo.Password.ToUpper());
+                    
                     if (user == null)
                     {
-                        res.State = 1;
+                        res.State = 2;
                         res.Message = "当前用户不合法";
                     }
                     else
                     {
-                        
+                        res.Data = _mapper.Map<UserDTO>(user);
+                        res.Message = "当前用户验证成功";
                     }
                 }
             }
@@ -54,7 +68,7 @@ namespace ERPServer.Controllers
                 _logger.LogError("验证用户失败：{0}", e.Message);
 
                 res.Data = e;
-                res.State = -2;
+                res.State = -1;
                 //throw;
             }
 
@@ -69,7 +83,8 @@ namespace ERPServer.Controllers
 
             try
             {
-                res.Data = this._privilegeService.GetUsers();
+                var temp = this._privilegeService.GetUsers();
+                res.Data = _mapper.Map<List<UserDTO>>(temp);
             }
             catch (System.Exception e)
             {
@@ -89,7 +104,10 @@ namespace ERPServer.Controllers
             Result res = new Result();
             try
             {
-                res.Data = this._privilegeService.GetUser(userID);
+                var temp = this._privilegeService.GetUser(userID);
+
+                res.Data = _mapper.Map<UserDTO>(temp);
+                //res.Data = this._privilegeService.GetUser(userID);
 
                 if (res.Data == null)
                 {
