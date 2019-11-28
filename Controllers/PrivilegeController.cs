@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using ERPServer.Bussiness.JWTHelper;
 using ERPServer.Bussiness.Privilege;
 using ERPServer.DTO;
 using ERPServer.DTO.PrivilegeManagement;
+using ERPServer.Models;
 using ERPServer.Models.PrivilegeManagement;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +15,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ERPServer.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PrivilegeController : ControllerBase
@@ -32,6 +36,7 @@ namespace ERPServer.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("auth")]
         public Result Authenticate([FromBody]AuthenticationInfo authInfo)
@@ -50,7 +55,7 @@ namespace ERPServer.Controllers
                     var user = this._privilegeService.GetUsers()
                     .Find(user => user.LoginName == authInfo.UserName
                     && user.Password.ToUpper() == authInfo.Password.ToUpper());
-                    
+
                     if (user == null)
                     {
                         res.State = 2;
@@ -58,7 +63,9 @@ namespace ERPServer.Controllers
                     }
                     else
                     {
-                        res.Data = _mapper.Map<UserDTO>(user);
+                        res.Data = new { token = JWTHelper.CreateJWTToken(), user = _mapper.Map<UserDTO>(user) };
+                        //res.Data = _mapper.Map<UserDTO>(user);
+
                         res.Message = "当前用户验证成功";
                     }
                 }
@@ -81,6 +88,9 @@ namespace ERPServer.Controllers
         {
             Result res = new Result();
 
+            //可以获取token中的声明内容
+            // var currentUser = HttpContext.User; 
+            // var tt = currentUser.Claims;
             try
             {
                 var temp = this._privilegeService.GetUsers();
