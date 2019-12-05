@@ -203,10 +203,10 @@ namespace ERPServer.Migrations
                         new
                         {
                             UserID = 1L,
-                            CreateTime = new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(5683),
-                            CurrentLoginTime = new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(6128),
+                            CreateTime = new DateTime(2019, 12, 5, 16, 51, 16, 255, DateTimeKind.Local).AddTicks(4612),
+                            CurrentLoginTime = new DateTime(2019, 12, 5, 16, 51, 16, 255, DateTimeKind.Local).AddTicks(5068),
                             Email = "",
-                            LastLoginTime = new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(5926),
+                            LastLoginTime = new DateTime(2019, 12, 5, 16, 51, 16, 255, DateTimeKind.Local).AddTicks(4861),
                             LoginCount = 0L,
                             LoginName = "SuperAdmin",
                             MobileNum = "",

@@ -38,10 +38,12 @@ namespace ERPServer
         {
             services.AddControllers();
 
-            string connectionString = Configuration.GetConnectionString(MigrationManager.CONNECTION_NAME).Replace("|DataDirectory|",
+            string connectionString = Configuration.GetConnectionString(MigrationManager.PRIVILEGE_CONNECTION_NAME).Replace("|DataDirectory|",
                         System.IO.Directory.GetCurrentDirectory() + MigrationManager.DATABASE_PATH);
             services.AddDbContext<PrivilegeManagementContext>(options =>
             options.UseSqlServer(connectionString));
+            connectionString = Configuration.GetConnectionString(MigrationManager.SYSTEM_CONNECTION_NAME).Replace("|DataDirectory|",
+                        System.IO.Directory.GetCurrentDirectory() + MigrationManager.DATABASE_PATH);
             services.AddDbContext<SystemInfoContext>(option =>
             option.UseSqlServer(connectionString));
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ERPServer.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialPrivilege : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -159,7 +159,7 @@ namespace ERPServer.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserID", "CreateTime", "CurrentLoginTime", "Email", "LastLoginTime", "LoginCount", "LoginName", "MobileNum", "Password", "UserName" },
-                values: new object[] { 1L, new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(5683), new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(6128), "", new DateTime(2019, 11, 25, 13, 18, 45, 655, DateTimeKind.Local).AddTicks(5926), 0L, "SuperAdmin", "", "E10ADC3949BA59ABBE56E057F20F883E", "超级管理员" });
+                values: new object[] { 1L, new DateTime(2019, 12, 5, 16, 51, 16, 255, DateTimeKind.Local).AddTicks(4612), new DateTime(2019, 12, 5, 16, 51, 16, 255, DateTimeKind.Local).AddTicks(5068), "", new DateTime(2019, 12, 5, 16, 51, 16, 255, DateTimeKind.Local).AddTicks(4861), 0L, "SuperAdmin", "", "E10ADC3949BA59ABBE56E057F20F883E", "超级管理员" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Department_UserID",

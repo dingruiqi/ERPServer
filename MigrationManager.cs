@@ -10,7 +10,8 @@ namespace ERPServer
     public static class MigrationManager
     {
         public const string DATABASE_PATH = "\\app_data\\database\\";
-        public const string CONNECTION_NAME = "PrivilegeDatabase";
+        public const string PRIVILEGE_CONNECTION_NAME = "PrivilegeDatabase";
+        public const string SYSTEM_CONNECTION_NAME = "SystemDatabase";
         public static IHost MigrateDatabase(this IHost host)
         {
             var logger = NLog.Web.NLogBuilder.ConfigureNLog("NLog.config").GetCurrentClassLogger();
