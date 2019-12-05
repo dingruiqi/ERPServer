@@ -1,0 +1,57 @@
+using AutoMapper;
+using ERPServer.Bussiness.SystemInfo;
+using ERPServer.DTO;
+using ERPServer.DTO.SystemInfo;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
+namespace ERPServer.Controllers
+{
+    [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
+    public class SystemInfoController : ControllerBase
+    {
+        private readonly ISystemInfoService _systemInfoService;
+
+        private readonly ILogger<SystemInfoController> _logger;
+
+        private readonly IMapper _mapper;
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public SystemInfoController(ISystemInfoService iSystemInfo, ILogger<SystemInfoController> logger, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        {
+            _systemInfoService = iSystemInfo;
+            _logger = logger;
+            _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        [Route("system-info")]
+        public Result GetSystemInfo()
+        {
+            Result res = new Result();
+
+            try
+            {
+                var temp = this._systemInfoService.GetSystemInfo();
+
+                res.Data = _mapper.Map<SystemSetInfoDTO>(temp);
+            }
+            catch (System.Exception e)
+            {
+                res.State = 1;
+                res.Message = $"获取系统信息失败！{e.Message}";
+                res.Data = e;
+
+                _logger.LogError("获取系统信息失败：{0}", e.Message);
+                //throw;
+            }
+
+            return res;
+        }
+    }
+}

@@ -9,7 +9,7 @@ namespace ERPServer.DataAccess
     public class PrivilegeManagementContext : DbContext
     {
         //如果在ConfigureServices中注册该上下文，则需要显示声明该构造函数，不然会报错
-        public PrivilegeManagementContext(DbContextOptions options) : base(options)
+        public PrivilegeManagementContext(DbContextOptions<PrivilegeManagementContext> options) : base(options)
         {
         }
 

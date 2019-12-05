@@ -10,5 +10,7 @@ namespace ERPServer.Bussiness.Privilege
         User GetUser(long userID);
 
         int AddUser(User user);
+
+        int UpdateUser(User user);
     }
 }

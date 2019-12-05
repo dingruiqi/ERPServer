@@ -29,12 +29,27 @@ namespace ERPServer
 
                         appContext.Database.Migrate();
 
-                        logger.Info("migrate database successful");
+                        logger.Info("migrate PrivilegeManagement database successful");
                     }
                     catch (Exception e)
                     {
                         //Log errors or do anything you think it's needed
-                        logger.Error(e, "migrate database because of exception");
+                        logger.Error(e, "migrate PrivilegeManagement database because of exception");
+                        throw;
+                    }
+                }
+
+                using (var appContext = scope.ServiceProvider.GetRequiredService<SystemInfoContext>())
+                {
+                    try
+                    {
+                        appContext.Database.Migrate();
+
+                        logger.Info("migrate SystemInfo database successful");
+                    }
+                    catch (System.Exception e)
+                    {
+                        logger.Error(e, "migrate SystemInfo database because of exception");
                         throw;
                     }
                 }

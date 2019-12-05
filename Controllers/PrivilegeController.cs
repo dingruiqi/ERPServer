@@ -158,6 +158,13 @@ namespace ERPServer.Controllers
                 if (res.State != 0)
                 {
                     res.Message = "当前已经存在相同编号的用户！";
+                    res.State = this._privilegeService.UpdateUser(user);
+
+                    if (res.State != 0)
+                    {
+                        res.Message = "更新用户信息失败！";
+                    }
+
                     res.Data = user;
                 }
                 else

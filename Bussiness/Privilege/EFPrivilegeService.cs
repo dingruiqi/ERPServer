@@ -74,5 +74,10 @@ namespace ERPServer.Bussiness.Privilege
             .AsNoTracking()
             .ToList();
         }
+
+        public int UpdateUser(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

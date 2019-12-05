@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using ERPServer.Bussiness.JWTHelper;
 using ERPServer.Bussiness.Privilege;
+using ERPServer.Bussiness.SystemInfo;
 using ERPServer.DataAccess;
 using ERPServer.DTO;
 using ERPServer.Models;
@@ -37,13 +38,18 @@ namespace ERPServer
         {
             services.AddControllers();
 
+            string connectionString = Configuration.GetConnectionString(MigrationManager.CONNECTION_NAME).Replace("|DataDirectory|",
+                        System.IO.Directory.GetCurrentDirectory() + MigrationManager.DATABASE_PATH);
             services.AddDbContext<PrivilegeManagementContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString(MigrationManager.CONNECTION_NAME).Replace("|DataDirectory|",
-            System.IO.Directory.GetCurrentDirectory() + MigrationManager.DATABASE_PATH)));
+            options.UseSqlServer(connectionString));
+            services.AddDbContext<SystemInfoContext>(option =>
+            option.UseSqlServer(connectionString));
 
             services.AddTransient<IPrivilegeService, EFPrivilegeService>();
+            services.AddTransient<ISystemInfoService, SystemInfoService>();
 
             services.AddAutoMapper(typeof(PrivilegeAutoMapperProfileConfiguration));
+            services.AddAutoMapper(typeof(SystemInfoAutoMapperProfileConfiguration));
 
             services.Configure<JWTSetting>(Configuration.GetSection("JWTSetting"));
             JWTSetting jwtSetting = new JWTSetting();
