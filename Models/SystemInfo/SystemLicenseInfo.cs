@@ -20,6 +20,11 @@ namespace ERPServer.Models.SystemInfo
         public int AuthorizedQuantity { get; set; }
         [MaxLength(255)]
         public string Remark { get; set; }
+        [Required]
+        public SystemEnvironment Environment { get; set; }
+        //签名
+        [Required]
+        public byte[] Sign { get; set; }
 
         public List<SystemModuleInfo> ModuleLicenseInfo { get; set; }
     }

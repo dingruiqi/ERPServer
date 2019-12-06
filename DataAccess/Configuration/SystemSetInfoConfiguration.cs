@@ -9,6 +9,9 @@ namespace ERPServer.DataAccess.Configuration
         public void Configure(EntityTypeBuilder<SystemSetInfo> builder)
         {
             //throw new System.NotImplementedException();
+            builder.Property(info => info.CorporationLogo)
+            .HasColumnType("image");
+
             builder.HasData(new SystemSetInfo()
             {
                 CorporationCode = "kdixgioakfgehgi"//设置公钥

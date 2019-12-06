@@ -32,9 +32,41 @@ namespace ERPServer.Bussiness.SystemInfo
             throw new System.NotImplementedException();
         }
 
+        private bool SystemInfoExists(string code)
+        {
+            var tmp = this.GetSystemInfo();
+            return tmp != null;
+        }
+
         public int UpdateSystemInfo(SystemSetInfo info)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
+            //https://blog.csdn.net/xiaomifengmaidi1/article/details/102766660
+
+            _context.SystemInfo.Update(info);
+            //_context.Entry(info).State = EntityState.Modified;
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!SystemInfoExists(info.CorporationCode))
+                {
+                    return -1;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+            return 0;
         }
     }
 }

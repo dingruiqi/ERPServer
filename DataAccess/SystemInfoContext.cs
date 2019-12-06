@@ -13,9 +13,12 @@ namespace ERPServer.DataAccess
 
         public DbSet<SystemSetInfo> SystemInfo { get; set; }
 
+        public DbSet<SystemLicenseInfo> SystemLicenseInfos { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new SystemSetInfoConfiguration());
+            modelBuilder.ApplyConfiguration(new SystemLicenseInfoConfiguration());
         }
     }
 }

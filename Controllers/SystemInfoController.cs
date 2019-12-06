@@ -2,6 +2,7 @@ using AutoMapper;
 using ERPServer.Bussiness.SystemInfo;
 using ERPServer.DTO;
 using ERPServer.DTO.SystemInfo;
+using ERPServer.Models.SystemInfo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,37 @@ namespace ERPServer.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        [Route("system-info")]
+        [HttpPut]
+        [Route("system-set-info")]
+        public Result UpdateSystemInfo(SystemSetInfoDTO systemInfo)
+        {
+            Result res = new Result();
+
+            try
+            {
+                var temp = _mapper.Map<SystemSetInfo>(systemInfo);
+                res.State = _systemInfoService.UpdateSystemInfo(temp);
+                if (res.State != 0)
+                {
+                    res.Message = "数据库中不存在对应的系统！";
+                    res.Data = systemInfo.CorporationCode;
+                }
+            }
+            catch (System.Exception e)
+            {
+                res.State = 1;
+                res.Message = $"更新系统信息失败！{e.Message}";
+                res.Data = e;
+
+                _logger.LogError("更新系统信息失败：{0}", e.Message);
+                //throw;
+            }
+
+            return res;
+        }
+
+        [HttpGet]
+        [Route("system-set-info")]
         public Result GetSystemInfo()
         {
             Result res = new Result();
