@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERPServer.Migrations.SystemInfo
 {
     [DbContext(typeof(SystemInfoContext))]
-    [Migration("20191206084029_InitialSystemInfo")]
+    [Migration("20191206125431_InitialSystemInfo")]
     partial class InitialSystemInfo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,10 @@ namespace ERPServer.Migrations.SystemInfo
 
                     b.Property<int>("AuthorizedQuantity")
                         .HasColumnType("int");
+
+                    b.Property<byte[]>("Environment")
+                        .IsRequired()
+                        .HasColumnType("varbinary(MAX)");
 
                     b.Property<string>("OrganizationName")
                         .IsRequired()

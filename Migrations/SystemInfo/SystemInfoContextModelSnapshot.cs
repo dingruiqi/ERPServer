@@ -29,6 +29,10 @@ namespace ERPServer.Migrations.SystemInfo
                     b.Property<int>("AuthorizedQuantity")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("Environment")
+                        .IsRequired()
+                        .HasColumnType("varbinary(MAX)");
+
                     b.Property<string>("OrganizationName")
                         .IsRequired()
                         .HasColumnType("nvarchar(64)")

@@ -34,6 +34,7 @@ namespace ERPServer.Migrations.SystemInfo
                     ProductExpireTime = table.Column<DateTime>(nullable: false),
                     AuthorizedQuantity = table.Column<int>(nullable: false),
                     Remark = table.Column<string>(maxLength: 255, nullable: true),
+                    Environment = table.Column<byte[]>(type: "varbinary(MAX)", nullable: false),
                     Sign = table.Column<byte[]>(type: "varbinary(MAX)", nullable: false)
                 },
                 constraints: table =>

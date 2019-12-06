@@ -13,7 +13,7 @@ namespace ERPServer.DataAccess.Configuration
             .HasColumnType("varbinary(MAX)");
 
             builder.Property(lic => lic.Environment)
-            .HasConversion(v=>v.Serialize(),v=>v.)
+            .HasConversion(v => v.Encrypt(), v => v.Decrypt())
             .HasColumnType("varbinary(MAX)");
         }
     }
