@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ERPServer.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class SystemInfoController : ControllerBase
@@ -32,7 +32,6 @@ namespace ERPServer.Controllers
         }
 
         [HttpPut]
-        [Route("system-set-info")]
         public Result UpdateSystemInfo(SystemSetInfoDTO systemInfo)
         {
             Result res = new Result();
@@ -61,7 +60,6 @@ namespace ERPServer.Controllers
         }
 
         [HttpGet]
-        [Route("system-set-info")]
         public Result GetSystemInfo()
         {
             Result res = new Result();

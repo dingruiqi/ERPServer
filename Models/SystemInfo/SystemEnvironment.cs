@@ -7,11 +7,17 @@ namespace ERPServer.Models.SystemInfo
         public SystemEnvironment()
         {
             MACAddress = new List<string>();
-            BoardID = "UnKnown Board";
+            BoardID = new List<string>();
+            CpuID = new List<string>();
+            DriverNumber = new List<string>();
         }
 
         public List<string> MACAddress { get; set; }
 
-        public string BoardID { get; set; }
+        public List<string> BoardID { get; set; }
+
+        public List<string> CpuID { get; set; }
+
+        public List<string> DriverNumber { get; set; }
     }
 }
