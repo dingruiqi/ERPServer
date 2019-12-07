@@ -4,15 +4,6 @@ using System.Text;
 
 namespace ERPServer.Bussiness.AESHelper
 {
-    public enum AESBit
-    {
-        Bit128,
-
-        Bit192,
-
-        Bit256
-    }
-
     public class AESHelper
     {
         public const string AESKEY= "C&M work group";
@@ -113,5 +104,14 @@ namespace ERPServer.Bussiness.AESHelper
             return resultArray;
         }
         #endregion
+    }
+
+    public enum AESBit
+    {
+        Bit128,
+
+        Bit192,
+
+        Bit256
     }
 }
