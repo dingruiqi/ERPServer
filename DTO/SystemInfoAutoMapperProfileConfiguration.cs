@@ -9,6 +9,7 @@ namespace ERPServer.DTO
         public SystemInfoAutoMapperProfileConfiguration()
         {
             CreateMap<SystemSetInfo, SystemSetInfoDTO>();
+            CreateMap<SystemSetInfoDTO, SystemSetInfo>();
         }
     }
 }
