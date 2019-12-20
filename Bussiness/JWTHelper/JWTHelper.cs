@@ -31,9 +31,7 @@ namespace ERPServer.Bussiness.JWTHelper
                 null,
                 expires: DateTime.UtcNow.AddHours(1),
                 creds);
-
-                var t = DateTime.UtcNow.AddHours(1);
-
+                
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
