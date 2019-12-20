@@ -29,8 +29,10 @@ namespace ERPServer.Bussiness.JWTHelper
                 audience: Setting.Audience,
                 claims,
                 null,
-                DateTime.UtcNow.AddHours(1),
+                expires: DateTime.UtcNow.AddHours(1),
                 creds);
+
+                var t = DateTime.UtcNow.AddHours(1);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

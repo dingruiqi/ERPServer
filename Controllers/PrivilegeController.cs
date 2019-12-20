@@ -89,8 +89,12 @@ namespace ERPServer.Controllers
             Result res = new Result();
 
             //可以获取token中的声明内容
-            // var currentUser = HttpContext.User; 
-            // var tt = currentUser.Claims;
+            var currentUser = HttpContext.User; 
+            var tt = currentUser.Claims;
+            foreach (var item in tt)
+            {
+                var kdi = item;
+            }
             try
             {
                 var temp = this._privilegeService.GetUsers();
